@@ -10,6 +10,7 @@ public class SkyPosition : MonoBehaviour
         m_transform = this.transform;
 	}
 
+    // this is just for git test
 	void Update () 
 	{
         m_transform.position = player.position + new Vector3(0, 10, 0);
