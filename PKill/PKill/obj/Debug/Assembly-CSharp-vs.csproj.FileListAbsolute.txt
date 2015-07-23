@@ -1,0 +1,14 @@
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\UnityEditor.dll
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\UnityEngine.dll
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\nunit.framework.dll
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\iwang\Documents\PKill\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\iwang\Documents\PKill\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\iwang\Documents\PKill\obj\Debug\Assembly-CSharp.dll
+C:\Users\iwang\Documents\PKill\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Administrator\Desktop\PKill\PKill\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\PKill\PKill\obj\Debug\Assembly-CSharp.dll
