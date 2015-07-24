@@ -10,6 +10,7 @@ public class EnemyControl : MonoBehaviour {
 
     bool flag_attack = false;
     bool flag_firstattack = true;
+    bool can_angry = true;
 
     public int attackOff = 5;
     public enum EnemyState
@@ -43,6 +44,7 @@ public class EnemyControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
+        player = GameObject.FindWithTag("Player");
         transform_player = player.transform;
         transform_enmey = this.transform;
         navMeshAgent = this.GetComponent<NavMeshAgent>();
@@ -55,6 +57,7 @@ public class EnemyControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        Debug.Log(enemyState);
         switch (enemyState)
         {
             case EnemyState.walk:
@@ -105,19 +108,27 @@ public class EnemyControl : MonoBehaviour {
                 break;
 
             case EnemyState.hurt:
+                ShowSelf();
                 navMeshAgent.enabled = false;
                 animation.CrossFade("G_war_anger");
                 StartCoroutine(timeForBeforeDaying());
                 break;
             case EnemyState.dead:
+                ShowSelf();
                 animation.CrossFade("G_war_daying");
                 StartCoroutine(timeForAfterDaying());
                 break;
         }
 
+        skyState = WorldManger.Instance.isNight ? SkyState.night : SkyState.day;
+
+        if (enemyState == EnemyState.hurt || enemyState == EnemyState.dead)
+            return;
+
         switch (skyState)
         {
             case SkyState.night:
+                can_angry = true;
                 foreach (SkinnedMeshRenderer item in arr_Skinrender)
                 {
                     item.enabled = false;
@@ -128,20 +139,31 @@ public class EnemyControl : MonoBehaviour {
                 }
                 break;
             case SkyState.day:
-                 foreach (SkinnedMeshRenderer item in arr_Skinrender)
+                if (can_angry)
                 {
-                    item.enabled = true;
+                    can_angry = false;
+                    StartCoroutine(timeForBeforeAngry());
                 }
-                foreach (MeshRenderer item in arr_render)
-                {
-                    item.enabled = true;
-                }
+
+                ShowSelf();
                 break;
         }
 
         CaculateDistance();
         
 	}
+
+    private void ShowSelf()
+    {
+        foreach (SkinnedMeshRenderer item in arr_Skinrender)
+        {
+            item.enabled = true;
+        }
+        foreach (MeshRenderer item in arr_render)
+        {
+            item.enabled = true;
+        }
+    }
 
     IEnumerator timeForAttackIdle()
     {
@@ -165,6 +187,7 @@ public class EnemyControl : MonoBehaviour {
     IEnumerator timeForAfterDaying()
     {
         yield return new WaitForSeconds(2.16f);
+        WorldManger.Instance.num_enemy -= 1;
         Destroy(this.gameObject);
     }
 
@@ -197,7 +220,7 @@ public class EnemyControl : MonoBehaviour {
 
     public void AngryForLight()
     {
-        StartCoroutine(timeForBeforeAngry());
+        
     }
 
     IEnumerator timeForBeforeAngry()
