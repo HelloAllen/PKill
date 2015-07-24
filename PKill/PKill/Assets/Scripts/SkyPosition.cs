@@ -9,7 +9,7 @@ public class SkyPosition : MonoBehaviour
 	{
         m_transform = this.transform;
 	}
-
+    // 12:01 test
     // this is just for git test
 	void Update () 
 	{
